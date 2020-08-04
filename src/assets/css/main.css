@@ -1,0 +1,166 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+html {
+  font-family: "Nanum Gothic", sans-serif;
+  background-color: #3c3a47;
+  color: white;
+}
+
+.main__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title__container {
+  display: flex;
+  width: 75%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.title__container h1 {
+  flex: 1;
+}
+
+.icon__moon {
+  margin-right: 5%;
+}
+
+.text__dark-mode {
+  display: inline;
+}
+
+.dark-mode {
+  display: flex;
+  justify-content: center;
+  margin: 0px 5%;
+  width: 40%;
+  height: 10%;
+  padding: 0.5rem 0.75rem;
+  background-color: gray;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .dark-mode {
+    display: flex;
+    justify-content: center;
+    margin: 0px 5%;
+    width: 20%;
+    height: 10%;
+    padding: 0.5rem 0.75rem;
+    background-color: gray;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+}
+
+.main__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1.5px solid #b5b3bd;
+  border-radius: 8px;
+  width: 75%;
+  height: 4rem;
+}
+
+.inputBar {
+  align-items: center;
+  margin-left: 0.6rem;
+  flex: 2;
+}
+
+.icon__container {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1.5rem 0px;
+}
+
+.icon__link:visited {
+  color: white;
+}
+
+.status {
+  width: 75%;
+  border-radius: 8px;
+  border: 1.5px solid #b5b3bd;
+  margin: 1rem 0;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.todos__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  border-radius: 8px;
+  border: 1.5px solid #b5b3bd;
+}
+.todos__container ul {
+  padding-left: 0;
+  width: 100%;
+}
+.task__input {
+  border: none;
+  padding: 0.7rem;
+  width: 60%;
+  font-size: 0.8rem;
+  border-radius: 8px;
+}
+
+.task__input:focus {
+  outline: none;
+}
+
+.task__button {
+  font-family: "Nanum Gothic", sans-serif;
+  border-width: 2px;
+  cursor: pointer;
+  margin: 0.3rem;
+  padding: 0.75rem 5%;
+  border-radius: 12px;
+}
+
+.task__button:focus {
+  outline: none;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task__title {
+  margin-left: 5%;
+}
+
+.task__complete {
+  flex: 1;
+  margin: 0 5%;
+}
+
+.task__button__container {
+  display: flex;
+  width: 20%;
+  margin-right: 3%;
+}
+
+.todos {
+  margin: 2rem 0;
+  text-decoration: none;
+}
+
+footer {
+  margin: 1rem 0;
+}
