@@ -8,6 +8,7 @@ import {
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
 import TodoList from "./TodoList";
 import TaskStatus from "./TaskStatus";
+import Clock from "./Clock";
 
 type Task = {
   title: string;
@@ -44,11 +45,11 @@ export default function Todo({}: Props): ReactElement {
   const [task, setTask] = useState({ title: "", isComplete: false, index: 0 });
 
   // addTask 는 생성한 task 를 task 목록에 추가하는 역할
-  const addTask = (): void => dispatch({ type: "ADD", task: task });
+  const addTask = (): void => {
+    if (task.title !== "") dispatch({ type: "ADD", task: task });
+  };
   // deleteTask 는 삭제할 태스크를 전달해야 함.
   const deleteTask = (index: number): void => {
-    console.log(tasks);
-    console.log(index);
     dispatch({ type: "DELETE", index: index });
   };
 
@@ -63,8 +64,11 @@ export default function Todo({}: Props): ReactElement {
   // 폼 제출시
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    e.persist();
-    console.log("hi");
+    setTask({
+      title: "",
+      isComplete: false,
+      index: 0,
+    });
   };
 
   return (
@@ -86,13 +90,14 @@ export default function Todo({}: Props): ReactElement {
             value={task.title}
             onChange={handleChange}
           ></input>
+          {/* 태스크 등록 버튼 */}
           <button type="submit" className="task__button" onClick={addTask}>
             등록
           </button>
         </form>
       </div>
       {/* 상태바 컴포넌트 */}
-      <TaskStatus></TaskStatus>
+      <TaskStatus taskNumber={tasks.length}></TaskStatus>
       {/* 태스크 목록 컴포넌트 */}
       <div className="todos__container">
         {/* 미리 태스크의 인덱스를 삭제 함수에 넘김. */}
@@ -106,11 +111,15 @@ export default function Todo({}: Props): ReactElement {
       </div>
       {/* footer 부분 */}
       <footer>
-        {" "}
+        {/* 시계 위젯 */}
+        <div className="clock__container">
+          <Clock></Clock>
+        </div>
         <div className="icon__container">
           <a
             className="icon__link"
             href="https://github.com/C17AN?tab=repositories"
+            rel="noopener noreferrer"
             target="_blank"
           >
             <FontAwesomeIcon icon={faGithub} size="2x" />
@@ -118,6 +127,7 @@ export default function Todo({}: Props): ReactElement {
           <a
             className="icon__link"
             href="https://www.instagram.com/chamming2/"
+            rel="noopener noreferrer"
             target="_blank"
           >
             <FontAwesomeIcon icon={faInstagram} size="2x" />
@@ -125,6 +135,7 @@ export default function Todo({}: Props): ReactElement {
           <a
             className="icon__link"
             href="https://www.facebook.com/profile.php?id=100013524540306"
+            rel="noopener noreferrer"
             target="_blank"
           >
             <FontAwesomeIcon icon={faFacebook} size="2x" />
