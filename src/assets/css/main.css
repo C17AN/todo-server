@@ -15,7 +15,7 @@ html {
 
 .title__container {
   display: flex;
-  width: 75%;
+  width: 80%;
   justify-content: center;
   align-items: center;
   flex-direction: row;
@@ -66,11 +66,12 @@ html {
   align-items: center;
   border: 1.5px solid #b5b3bd;
   border-radius: 8px;
-  width: 75%;
+  width: 80%;
   height: 4rem;
 }
 
 .inputBar {
+  justify-content: center;
   align-items: center;
   margin-left: 0.6rem;
   flex: 2;
@@ -90,7 +91,7 @@ html {
 }
 
 .status {
-  width: 75%;
+  width: 80%;
   border-radius: 8px;
   border: 1.5px solid #b5b3bd;
   margin: 1rem 0;
@@ -102,7 +103,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75%;
+  width: 80%;
   border-radius: 8px;
   border: 1.5px solid #b5b3bd;
 }
@@ -145,15 +146,31 @@ html {
   margin-left: 5%;
 }
 
-.task__complete {
-  flex: 1;
-  margin: 0 5%;
-}
-
 .task__button__container {
   display: flex;
-  width: 20%;
+  width: 50%;
   margin-right: 3%;
+}
+
+@media (min-width: 768px) {
+  .task__button__container {
+    display: flex;
+    width: 20%;
+    margin-right: 3%;
+  }
+}
+
+.task__button__container .task__complete {
+  flex: 1;
+  margin: 0 5%;
+  width: 50%;
+  border-radius: 4px;
+  border: 1px;
+  padding: 4% 8%;
+}
+
+.task__button__container .task__complete:focus {
+  outline: none;
 }
 
 .todos {
