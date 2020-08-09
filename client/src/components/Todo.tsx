@@ -17,41 +17,32 @@ type Task = {
   index: number;
 };
 
-type Action = { type: "ADD"; task: Task } | { type: "DELETE"; index: number };
-
-function reducer(tasks: Task[], action: Action): Task[] {
-  switch (action.type) {
-    case "ADD":
-      return [...tasks, action.task];
-    case "DELETE":
-      // 삭제 시, Task 목록의 인덱스 조정함.
-      // e.g. {0, 1, 2} 중 인덱스 1이 삭제되면 2가 1로 오게끔
-      return tasks
-        .filter((el) => el.index !== action.index)
-        .map((el, index) => ({ ...el, index: index }));
-    default:
-      throw new Error("unhandled action");
-  }
-}
-
 interface Props {}
 
 export default function Todo({}: Props): ReactElement {
-  const [tasks, dispatch] = useReducer(reducer, [
-    { title: "밥먹기", isComplete: true, index: 0 },
-    { title: "코딩하기", isComplete: true, index: 1 },
-    { title: "아에이오우아아", isComplete: true, index: 2 },
-  ]);
-  // task 초기상태
+  // task 의 배열, task 목록 관리를 위한 상태
+  const [taskList, setTaskList] = useState([]);
+  // task 초기상태, 단일 task 관리를 위한 상태
   const [task, setTask] = useState({ title: "", isComplete: false, index: 0 });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000")
+      .then((res) => setTaskList(res.data))
+      .catch((err) => console.error(err));
+  }, taskList);
 
   // addTask 는 생성한 task 를 task 목록에 추가하는 역할
   const addTask = (): void => {
-    if (task.title !== "") dispatch({ type: "ADD", task: task });
+    if (task.title !== "") {
+    }
   };
   // deleteTask 는 삭제할 태스크를 전달해야 함.
   const deleteTask = (index: number): void => {
-    dispatch({ type: "DELETE", index: index });
+    axios
+      .delete("http://localhost:5000", { data: { targetId: index } })
+      .then((res) => setTaskList(res.data))
+      .catch((err) => console.error(err));
   };
 
   // 입력창에 타이핑 될때마다 호출됨
@@ -59,7 +50,7 @@ export default function Todo({}: Props): ReactElement {
     setTask({
       title: e.target.value,
       isComplete: false,
-      index: tasks.length,
+      index: taskList.length,
     });
   };
   // 폼 제출시 -> 서버로 할일 목록 전송
@@ -73,7 +64,7 @@ export default function Todo({}: Props): ReactElement {
 
     axios
       .post("http://localhost:5000", task)
-      .then((res) => console.log(res))
+      .then((res) => setTaskList(res.data))
       .catch((err) => console.log(err));
   };
 
@@ -92,8 +83,8 @@ export default function Todo({}: Props): ReactElement {
         <form className="inputBar" onSubmit={handleSubmit}>
           <input
             className="task__input"
-            placeholder="할일을 입력해주세요"
             value={task.title}
+            placeholder="할일을 입력해주세요"
             onChange={handleChange}
           ></input>
           {/* 태스크 등록 버튼 */}
@@ -103,11 +94,11 @@ export default function Todo({}: Props): ReactElement {
         </form>
       </div>
       {/* 상태바 컴포넌트 */}
-      <TaskStatus taskNumber={tasks.length}></TaskStatus>
+      <TaskStatus taskNumber={taskList.length}></TaskStatus>
       {/* 태스크 목록 컴포넌트 */}
       <div className="todos__container">
         {/* 미리 태스크의 인덱스를 삭제 함수에 넘김. */}
-        {tasks.map((el: Task, index) => (
+        {taskList.map((el: Task, index) => (
           <TodoList
             title={el.title}
             onComplete={() => deleteTask(index)}
