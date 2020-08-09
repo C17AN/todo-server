@@ -1,4 +1,4 @@
-import React, { useReducer, useState, ReactElement } from "react";
+import React, { useReducer, useState, useEffect, ReactElement } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -72,8 +72,8 @@ export default function Todo({}: Props): ReactElement {
     });
 
     axios
-      .post("http://localhost:5000/add", tasks)
-      .then((res) => console.log(res.config.data))
+      .post("http://localhost:5000", task)
+      .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
 
