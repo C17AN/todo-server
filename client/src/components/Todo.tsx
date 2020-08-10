@@ -30,7 +30,7 @@ export default function Todo({}: Props): ReactElement {
       .get("http://localhost:5000")
       .then((res) => setTaskList(res.data))
       .catch((err) => console.error(err));
-  }, taskList);
+  }, [taskList]);
 
   // addTask 는 생성한 task 를 task 목록에 추가하는 역할
   const addTask = (): void => {
