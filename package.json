@@ -1,0 +1,23 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "- 만들게 된 계기 : CMS 교육 대기중에 너무 심심해서 시작하게 된 프로젝트이며, UI는 [페이스북 링크](https://www.facebook.com/100003769223078/videos/pcb.2553220691604754/1847567145378908/) 의 영향을 크게 받음. (애초에 처음엔 이걸 클론할 목적)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client && npm run start",
+    "server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C17AN/Todo-Typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/C17AN/Todo-Typescript/issues"
+  },
+  "homepage": "https://github.com/C17AN/Todo-Typescript#readme"
+}
