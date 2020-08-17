@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`listening on port 5000`);
   MongoClient.connect(
     // 몽고디비와 연결, connect 함수는 프로미스로 사용 가능
