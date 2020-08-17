@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.listen(process.env.PORT || 5000, () => {
   console.log(`listening on port 5000`);
   MongoClient.connect(
-    // 몽고디비와 연결, connect 함수는 프로미스로 사용 가능
+    // 몽고디비와 연결, connect 함수는 프로미스로 사용 가능!
     "mongodb+srv://spacesangsoo:recharge1@cluster0.9nkya.mongodb.net/task_database?retryWrites=true&w=majority",
     { useUnifiedTopology: true }
   )
